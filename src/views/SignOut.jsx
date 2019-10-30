@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image } from 'react-bootstrap';
-import bird from '../resources/giphy6.gif';
+import bird from '../resources/pic3.jpeg';
 
 class SignOut extends Component {
     constructor(){

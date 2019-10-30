@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image } from 'react-bootstrap';
-import bird from '../resources/giphy4.gif';
+import bird from '../resources/pic2.jpg';
 
 class History extends Component {
     constructor(){

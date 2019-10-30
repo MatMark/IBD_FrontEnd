@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image } from 'react-bootstrap';
-import bird from '../resources/giphy.gif';
+import bird from '../resources/pic5.jpg';
 
 class Contact extends Component {
     constructor(){

@@ -9,6 +9,7 @@ import History from './views/History';
 import AccountBalance from './views/AccountBalance';
 import SignOut from './views/SignOut';
 import Home from './views/Home';
+import Login from './views/Login';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
       <HashRouter>
         <MenuBar/>
           <Route exact path="/" render={() => (<Redirect to="/home"/>)}/>
-          <Route path="/home" component={Home}/>
+          <Route path="/home" component={Login}/>
           <Route path="/account_balance" component={AccountBalance}/>
           <Route path="/transfers" component={Transfers}/>
           <Route path="/history" component={History}/> 

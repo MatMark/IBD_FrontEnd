@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Navbar, Nav, Image, Form, Button, ButtonGroup } from 'react-bootstrap';
+import { Navbar, Nav, Image, Form, Button } from 'react-bootstrap';
 import MaterialIcon from 'material-icons-react';
-import logo from './resources/bird.png';
+import logo from './resources/eka.png';
 
 
 class MenuBar extends Component {
@@ -23,7 +23,6 @@ onClick() {
   render() {
     return (
         <>
-        
             <Navbar bg="primary" variant="dark" fixed="top" sticky="top" expand="lg" className="justify-content-between">
                 <Navbar.Brand href="#home">
                   <Form inline>

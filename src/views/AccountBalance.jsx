@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image } from 'react-bootstrap';
-import bird from '../resources/giphy5.gif'
+import bird from '../resources/pic4.png'
 
 class AccountBalance extends Component {
     constructor(){

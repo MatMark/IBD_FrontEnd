@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Jumbotron } from 'react-bootstrap';
+
+
 
 class Home extends Component {
     constructor(){
@@ -23,7 +26,12 @@ class Home extends Component {
     
         return (
             <>
-                <h1>Birdy bird</h1>
+                <Jumbotron fluid>
+                    <h1>W4rta Systems</h1>
+                    <p>
+                    Twoje pieniądze są warte naszej uwagi ;)
+                    </p>
+                </Jumbotron>
             </>
         );
         

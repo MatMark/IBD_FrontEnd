@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image } from 'react-bootstrap';
-import bird from '../resources/giphy2.gif';
+import bird from '../resources/pic1.png';
 
 class Transfers extends Component {
     constructor(){
