@@ -25,7 +25,7 @@ class Welcome extends Component {
         return (
             <>
                 <Jumbotron>
-                    <Login/>
+                    <Login buttonName="Zaloguj się"/>
                 </Jumbotron>
             </>
         );

@@ -22,6 +22,7 @@ onClick() {
 
 signOut() {
   localStorage.removeItem('token');
+  localStorage.removeItem('userID');
   window.location.href = ('#/sign_out');
   window.location.reload(true);
 }
@@ -38,7 +39,6 @@ signOut() {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                  {/* <ButtonGroup size="sm" className="mt-3"> */}
                     <Nav.Link href="#account_balance">
                       <Button>
                         <Form inline>
@@ -83,16 +83,12 @@ signOut() {
                         </Form>
                       </Button>
                     </Nav.Link>
-
-                  {/* </ButtonGroup> */}
-                    {/* <Nav.Link href="#sign_out"> */}
                       <Button onClick={this.signOut}>
                         <Form inline>
                           <MaterialIcon icon="forward" invert/>
                           &nbsp;Wyloguj
                         </Form>
                       </Button>
-                    {/* </Nav.Link> */}
                   </Navbar.Collapse>
             </Navbar>
         </>

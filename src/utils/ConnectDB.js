@@ -19,6 +19,30 @@ class ConnectDB {
         }
     }
 
+    static async postAddress(city, street, homeNumber, apartmentNumber, postCode){
+        const headers = new Headers([['Content-Type', 'application/json']]);
+        let object = {
+            city, 
+            street, 
+            homeNumber, 
+            apartmentNumber,
+            postCode} 
+          try {
+            const res = await fetch('https://backendw4rta.azurewebsites.net/api/Address', {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify(object),
+            });
+            const res_1 = await res.json();
+            
+            return res_1;
+        }
+        catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    
     //-----------------------LOGIN----------------------------------
 
     static async login(email, password){
@@ -34,8 +58,38 @@ class ConnectDB {
                 body: JSON.stringify(object),
             }).then(handleResponse)
             .then(user => {
-                console.log(user)
+                // console.log(user)
                 localStorage.setItem('token', user.token);
+            });
+            const res_1 = await res.json();
+            return res_1;
+        }
+        catch (error) {
+            const err = await error;
+            return err;
+            // console.error('Error:', error);
+        }
+    }
+
+    //----------------------REGISTER----------------------------------
+    static async register(firstName, lastName, pesel, phone, email, birthDate, password, addressId){
+        const headers = new Headers([['Content-Type', 'application/json']]);
+        let object = {
+            firstName,
+            lastName,
+            pesel,
+            phone,  
+            email,
+            birthDate,
+            password,
+            addressId
+        }
+  
+          try {
+            const res = await fetch('https://backendw4rta.azurewebsites.net/api/Register', {
+                method: 'POST',
+                headers: headers,
+                body: JSON.stringify(object),
             });
             const res_1 = await res.json();
             return res_1;

@@ -29,8 +29,8 @@ class Login extends Component {
         })}
 
     handleSubmit(){
-        console.log(this.state)
-        this.setState({ loading: true })
+        // console.log(this.state)
+        this.setState({ loading: true, show: false })
         ConnectDB.login(this.state.email, this.state.password)
         .then(res => {
             console.log(res)
@@ -39,7 +39,7 @@ class Login extends Component {
             window.location.reload(true);
             }
             else {
-                console.log(this.state)
+                // console.log(this.state)
             // this.handleClose();
             this.setState({ loading: false});
             // console.log(this.state)
@@ -58,10 +58,6 @@ class Login extends Component {
         }
 
         show = () => {
-            let contents = this.state.loading
-            ? <Spinner animation="border" variant="light" size="sm"/>
-            : 'Zaloguj'
-
             return (
                 <Modal show={this.state.show} onHide={this.handleClose}>
                     <Form onSubmit={this.handleSubmit}> 
@@ -108,7 +104,7 @@ class Login extends Component {
                                 Anuluj
                             </Button>
                             <Button variant="primary" type="submit">
-                                {contents}
+                                Zaloguj
                             </Button>
                         </Modal.Footer>
                     </Form>
@@ -124,7 +120,7 @@ class Login extends Component {
         return (
             <>
                 <Button variant="primary" onClick={this.handleShow}>
-                    Zaloguj się
+                    {this.props.buttonName}
                 </Button>
                 {contents}
             </>

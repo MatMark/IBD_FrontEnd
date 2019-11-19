@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Spinner } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import { Login } from './Components';
 
 class SignOut extends Component {
     constructor(){
@@ -9,14 +10,14 @@ class SignOut extends Component {
 
     state = { 
         x: document.documentElement.clientWidth,
-        y: document.documentElement.clientWidth*(2/3)
+        y: document.documentElement.clientWidth*(2/5)
     }
 
     resize()
     {
         this.setState({
             x: document.documentElement.clientWidth,
-            y: document.documentElement.clientWidth*(2/3)})
+            y: document.documentElement.clientWidth*(2/5)})
     }
 
     render() {
@@ -24,9 +25,18 @@ class SignOut extends Component {
     
         return (
             <>
-                <Spinner animation="grow" variant="dark" />
-                <Spinner animation="grow" variant="dark" />
-                <Spinner animation="grow" variant="dark" />
+                <Card border="success">
+                    <Card.Header>
+                            <h5 className="p-1 mb-2 bg-success text-white font-weight-bold">
+                                Pomyślnie wylogowano
+                            </h5>
+                    </Card.Header>
+                    <Card.Body>
+                    <Card.Text>
+                        <Login buttonName='Zaloguj się ponownie'/>
+                    </Card.Text>
+                    </Card.Body>
+                </Card>
             </>
         );
         

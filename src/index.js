@@ -5,43 +5,35 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './index.css';
 import Logged from './views/Logged/Logged';
 import Unlogged from './views/Unlogged/Unlogged';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 
-// ReactDOM.render(<Unlogged />, document.getElementById('root'));
-
-const reducer = (state, action) => {
-    switch (action.type) {
-      case 'LOGIN':
-        return { ...state, logged: false };
-      case 'LOGOUT':
-        return { ...state, logged: true };
-      default:
-        return state;
+  
+  function check(){
+    var jwt = require('jsonwebtoken');
+    if(localStorage.getItem('token') !== null){
+      try {
+        var decoded = jwt.verify(localStorage.getItem('token'), 'InternetoweBazyDanych');
+        // console.log(decoded)
+        localStorage.setItem('userID', decoded.nameid);
+      } catch(err) {
+        return false
       }
-  };
-
-  const store = createStore(reducer, { logged: false });
-  
-  if(localStorage.getItem('token')) {
-    store.dispatch({ type: 'LOGIN' });
-  } else {
-    store.dispatch({ type: 'LOGOUT' });
+      
+      // console.log(decoded)
+      if(decoded.aud === 'W4rta') return true
+      else return false
+    } else return false
   }
+
   
-  if(localStorage.getItem('token')) {
+  if(check()) {
     ReactDOM.render(
-      <Provider store={store}>
         <Logged />
-      </Provider> 
       , document.getElementById('root')
     );
   } else {
     ReactDOM.render(
-      <Provider store={store}>
           <Unlogged/>
-      </Provider> 
       , document.getElementById('root')
     );
   }
