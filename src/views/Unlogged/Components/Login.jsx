@@ -33,7 +33,7 @@ class Login extends Component {
         this.setState({ loading: true, show: false })
         ConnectDB.login(this.state.email, this.state.password)
         .then(res => {
-            console.log(res)
+            // console.log(res)
             if(res !== "Bad Request") {
             window.location.href = ('#home');
             window.location.reload(true);
@@ -120,7 +120,10 @@ class Login extends Component {
         return (
             <>
                 <Button variant="primary" onClick={this.handleShow}>
-                    {this.props.buttonName}
+                    <Form inline>
+                        <MaterialIcon icon="person" invert/>
+                        &nbsp;{this.props.buttonName}
+                    </Form>
                 </Button>
                 {contents}
             </>

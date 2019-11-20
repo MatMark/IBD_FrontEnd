@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { Jumbotron } from 'react-bootstrap';
+import { Jumbotron, Button, Nav, Form, Card, ButtonToolbar, Image } from 'react-bootstrap';
 import { Login } from './Components';
+import MaterialIcon from 'material-icons-react';
+import background_img from '../../resources/Birds.jpg';
+import logo from '../../resources/Logo_tlo.png';
 
 class Welcome extends Component {
     constructor(){
@@ -10,24 +13,52 @@ class Welcome extends Component {
 
     state = { 
         x: document.documentElement.clientWidth,
-        y: document.documentElement.clientWidth*(2/3)
+        y: document.documentElement.clientHeight
     }
 
     resize()
     {
         this.setState({
             x: document.documentElement.clientWidth,
-            y: document.documentElement.clientWidth*(2/3)})
+            y: document.documentElement.clientHeight})
     }
 
     render() {
+        window.onresize = this.resize;
+        var sectionStyle = {
+            minHeight: this.state.y,
+            backgroundImage: `url(${background_img})`,
+            backgroundPosition: "center", /* Center the image */
+            backgroundRepeat: "no-repeat", /* Do not repeat the image */
+            backgroundSize: "cover", /* Resize the background image to cover the entire container */
+         }
         
         return (
-            <>
-                <Jumbotron>
-                    <Login buttonName="Zaloguj się"/>
-                </Jumbotron>
-            </>
+            <Jumbotron style={sectionStyle}>
+                <Card border="primary" style={{ maxWidth: '20rem' }}>
+                    <Card.Header><h1 className="p-1 mb-2 text-primary font-weight-bold"><strong>Bankowość internetowa</strong></h1></Card.Header>
+                    <Card.Body>
+                    <Card.Title>
+                        <Image src={logo} width="128" height="128" alt="logo"/>
+                    </Card.Title>
+                    <Card.Text>
+                        <ButtonToolbar
+                        className="justify-content-between"
+                    >
+                            <Login buttonName="Zaloguj się"/>
+                            <Nav.Link href="#register" as={Button}>
+                                {/* <Button> */}
+                                <Form inline>
+                                    <MaterialIcon icon="person_add" invert/>
+                                    &nbsp;Zarejestruj
+                                </Form>
+                                {/* </Button> */}
+                            </Nav.Link> 
+                        </ButtonToolbar>
+                    </Card.Text>
+                    </Card.Body>
+                </Card>
+            </Jumbotron>
         );
         
       }

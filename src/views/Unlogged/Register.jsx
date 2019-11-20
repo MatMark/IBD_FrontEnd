@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Form, InputGroup, Card, Jumbotron, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Form, InputGroup, Card, Jumbotron, Button, OverlayTrigger, Tooltip, Nav, ButtonToolbar } from 'react-bootstrap';
 import MaterialIcon from 'material-icons-react';
 import ConnectDB from '../../utils/ConnectDB';
+import background_img from "../../resources/Birds.jpg"
 
 class Register extends Component {
     constructor(){
@@ -58,7 +59,20 @@ class Register extends Component {
                     res
                 )
                 .then(res => {
-                   console.log(res)  
+                //    console.log(res)
+                   if(res !== false){
+                        ConnectDB.login(
+                            this.state.login.email,
+                            this.state.login.password
+                        )
+                        .then(res => {
+                            // console.log(res)
+                            if(res !== "Bad Request") {
+                                window.location.href = ('#home');
+                                window.location.reload(true);
+                            }
+                        })
+                   }  
                 })
             } else console.log("Bad address")
             
@@ -143,7 +157,7 @@ class Register extends Component {
                     placement="top"
                     overlay={
                         <Tooltip>
-                            <strong>Hasło musi składać się z co najmniej 1 małej litery, 1 wielkiej litery i cyfry lub znaku specialnego, oraz musi składać z co najmniej 8 znaków</strong>
+                            <strong>Hasło musi zawierać co najmniej 1 małą literę, 1 wielką literę i cyfrę lub znak specialny, oraz musi składać z co najmniej 8 znaków</strong>
                         </Tooltip>
                     }>
                     <InputGroup>
@@ -505,14 +519,14 @@ class Register extends Component {
                             <strong>Podaj kod pocztowy miejsca zameldowania w formacie 2 cyfry, myślnik, 3 cyfry</strong>
                         </Tooltip>
                     }>
-                    <InputGroup>
+                    <InputGroup id="inputGroupPrepend">
                         <InputGroup.Prepend>
                             <InputGroup.Text id="inputGroupPrepend">
                                 <MaterialIcon icon="mail"/>
                                 &nbsp;Kod pocztowy
                             </InputGroup.Text>
                         </InputGroup.Prepend>
-                        <Form.Control 
+                        <Form.Control id="inputGroupPrepend" 
                         type="text" 
                         pattern="[0-9]{2}-[0-9]{3}"
                         placeholder="np. 12-123"
@@ -534,19 +548,40 @@ class Register extends Component {
                     </OverlayTrigger>
                </Card.Body>
                <Card.Footer>
-                    <Button variant="primary" onClick={this.handleSubmit}>
-                        Zarejestruj
-                    </Button>
-               </Card.Footer>
+                    <ButtonToolbar
+                            className="justify-content-between"
+                        >
+                        <Nav.Link href="#welcome" as={Button}>
+                                <Form inline>
+                                <MaterialIcon icon="chevron_left" invert/>
+                                &nbsp;Cofnij
+                                </Form>
+                        </Nav.Link>
+                        <Button variant="primary" type="submit" onClick={this.handleSubmit}>
+                            <Form inline>
+                            <MaterialIcon icon="check" invert/>
+                            &nbsp;Zarejestruj
+                            </Form>
+                        </Button>
+                    </ButtonToolbar>
+                </Card.Footer>
            </Card>
            )
    }
+   
 
     render() {
         window.onresize = this.resize;
+        var sectionStyle = {
+            minHeight: this.state.y,
+            backgroundImage: `url(${background_img})`,
+            backgroundPosition: "center", /* Center the image */
+            backgroundRepeat: "no-repeat", /* Do not repeat the image */
+            backgroundSize: "cover", /* Resize the background image to cover the entire container */
+         }
         return (
             <>
-                <Jumbotron className='justify-content-center'>
+                <Jumbotron className='justify-content-center' style={sectionStyle}>
                     {this.loginPage()}
                     {this.personalPage()}
                     {this.contactPage()}
