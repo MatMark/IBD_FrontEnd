@@ -24,6 +24,7 @@ class History extends Component {
             x: document.documentElement.clientWidth,
             y: document.documentElement.clientWidth*(2/3)})
     }
+    
     loadHistory = () => {
         return (
             <Spinner animation="grow" variant="dark" />

@@ -39,11 +39,11 @@ signOut() {
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav.Link href="#account_balance">
+                    <Nav.Link href="#your_accounts">
                       <Button>
                         <Form inline>
                           <MaterialIcon icon="account_balance_wallet" invert/>
-                          &nbsp;Stan konta
+                          &nbsp;Twoje konta
                         </Form>
                       </Button>
                     </Nav.Link>  
@@ -83,12 +83,15 @@ signOut() {
                         </Form>
                       </Button>
                     </Nav.Link>
+
+                    <Nav.Link>
                       <Button onClick={this.signOut}>
                         <Form inline>
                           <MaterialIcon icon="forward" invert/>
                           &nbsp;Wyloguj
                         </Form>
                       </Button>
+                    </Nav.Link>
                   </Navbar.Collapse>
             </Navbar>
         </>

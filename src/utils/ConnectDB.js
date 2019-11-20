@@ -42,6 +42,26 @@ class ConnectDB {
         }
     }
 
+
+    //----------------------ACCOUNTS--------------------------------
+
+    static async getClientAccounts(clientId){
+        const headers = new Headers([['Content-Type', 'application/json'], ['Authorization', 'bearer '+localStorage.getItem('token')]]); 
+          try {
+            const res = await fetch('https://backendw4rta.azurewebsites.net/api/Account/client_accounts', {
+                method: 'POST',
+                headers: headers,
+                body: clientId,
+            });
+            const res_1 = await res.json();
+            
+            return res_1;
+        }
+        catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
     
     //-----------------------LOGIN----------------------------------
 

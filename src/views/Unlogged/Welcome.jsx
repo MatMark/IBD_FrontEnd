@@ -47,12 +47,10 @@ class Welcome extends Component {
                     >
                             <Login buttonName="Zaloguj się"/>
                             <Nav.Link href="#register" as={Button}>
-                                {/* <Button> */}
                                 <Form inline>
                                     <MaterialIcon icon="person_add" invert/>
                                     &nbsp;Zarejestruj
                                 </Form>
-                                {/* </Button> */}
                             </Nav.Link> 
                         </ButtonToolbar>
                     </Card.Text>

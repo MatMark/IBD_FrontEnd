@@ -59,7 +59,7 @@ class Login extends Component {
 
         show = () => {
             return (
-                <Modal show={this.state.show} onHide={this.handleClose}>
+                <Modal show={this.state.show} onHide={this.handleClose} >
                     <Form onSubmit={this.handleSubmit}> 
                         <Modal.Header closeButton>
                             <Modal.Title>Logowanie</Modal.Title>
@@ -103,7 +103,10 @@ class Login extends Component {
                             <Button variant="secondary" onClick={this.handleClose}>
                                 Anuluj
                             </Button>
-                            <Button variant="primary" type="submit">
+                            <Button variant="primary" 
+                            type="submit"
+                            // onClick={this.handleSubmit}
+                            >
                                 Zaloguj
                             </Button>
                         </Modal.Footer>

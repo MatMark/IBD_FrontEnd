@@ -6,7 +6,7 @@ import '../../App.css';
 import Transfers from './Transfers';
 import AccountData from './AccountData';
 import History from './History';
-import AccountBalance from './AccountBalance';
+import YourAccounts from './YourAccounts';
 import SignOut from '../Unlogged/SignOut';
 import Home from './Home';
 
@@ -17,7 +17,7 @@ function Logged() {
         <MenuBar/>
           <Route exact path="/" render={() => (<Redirect to="/home"/>)}/>
           <Route path="/home" component={Home}/>
-          <Route path="/account_balance" component={AccountBalance}/>
+          <Route path="/your_accounts" component={YourAccounts}/>
           <Route path="/transfers" component={Transfers}/>
           <Route path="/history" component={History}/> 
           <Route path="/contact" component={Contact}/>

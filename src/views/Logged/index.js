@@ -1,4 +1,4 @@
-export {default as AccountBalance} from './AccountBalance';
+export {default as YourAccounts} from './YourAccounts';
 export {default as AccountData} from './AccountData';
 export {default as Contact} from './Contact';
 export {default as History} from '../History';
