@@ -1,37 +1,33 @@
-import React, { Component } from 'react';
-import { ActOffer } from './Components';
-
-
+import React, { Component } from "react";
+import { ActOffer } from "./Components";
 
 class Home extends Component {
-    constructor(){
-        super();
-        this.resize = this.resize.bind(this);
-    };
+  constructor() {
+    super();
+    this.resize = this.resize.bind(this);
+  }
 
-    state = { 
-        x: document.documentElement.clientWidth,
-        y: document.documentElement.clientWidth*(2/3)
-    }
+  state = {
+    x: document.documentElement.clientWidth,
+    y: document.documentElement.clientWidth * (2 / 3)
+  };
 
-    resize()
-    {
-        this.setState({
-            x: document.documentElement.clientWidth,
-            y: document.documentElement.clientWidth*(2/3)})
-    }
+  resize() {
+    this.setState({
+      x: document.documentElement.clientWidth,
+      y: document.documentElement.clientWidth * (2 / 3)
+    });
+  }
 
-    render() {
-        window.onresize = this.resize;
-    
-        return (
-            <>
-                <ActOffer/>
-            </>
-        );
-        
-      }
+  render() {
+    window.onresize = this.resize;
 
-} 
+    return (
+      <>
+        <ActOffer />
+      </>
+    );
+  }
+}
 
 export default Home;
