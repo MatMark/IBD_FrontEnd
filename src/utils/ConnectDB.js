@@ -101,6 +101,71 @@ class ConnectDB {
     }
   }
 
+  static async getAccountByNumber(number) {
+    const headers = new Headers([
+      ["Accept", "application/json"],
+      ["Authorization", "bearer " + localStorage.getItem("token")]
+    ]);
+    try {
+      const res = await fetch(
+        "https://backendw4rta.azurewebsites.net/api/Account/by_number/" +
+          number,
+        {
+          method: "GET",
+          headers: headers
+        }
+      );
+      const res_1 = await res.json();
+      return res_1;
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
+  //----------------------TRANSFERS--------------------------------
+
+  static async getTransfersByAccountId(id) {
+    const headers = new Headers([
+      ["Accept", "application/json"],
+      ["Authorization", "bearer " + localStorage.getItem("token")]
+    ]);
+    try {
+      const res = await fetch(
+        "https://backendw4rta.azurewebsites.net/api/Transfer/by_account_id/" +
+          id,
+        {
+          method: "GET",
+          headers: headers
+        }
+      );
+      const res_1 = await res.json();
+      return res_1;
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
+  static async getTransfersByDestination(destination) {
+    const headers = new Headers([
+      ["Accept", "application/json"],
+      ["Authorization", "bearer " + localStorage.getItem("token")]
+    ]);
+    try {
+      const res = await fetch(
+        "https://backendw4rta.azurewebsites.net/api/Transfer/by_destination/" +
+          destination,
+        {
+          method: "GET",
+          headers: headers
+        }
+      );
+      const res_1 = await res.json();
+      return res_1;
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
   //-----------------------LOGIN----------------------------------
 
   static async login(email, password) {

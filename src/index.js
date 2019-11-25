@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./index.css";
-import Logged from "./views/Logged/Logged";
-import Unlogged from "./views/Unlogged/Unlogged";
+import Logged from "./views/Logged/Logged.jsx";
+import Unlogged from "./views/Unlogged/Unlogged.jsx";
 import * as serviceWorker from "./serviceWorker";
 
 function check() {

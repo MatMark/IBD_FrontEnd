@@ -1,6 +1,14 @@
 import React, { Component } from "react";
-import { Spinner, Table } from "react-bootstrap";
+import {
+  Spinner,
+  Table,
+  Button,
+  Container,
+  Row,
+  Col
+} from "react-bootstrap";
 import ConnectDB from "../../utils/ConnectDB";
+import MaterialIcon from "material-icons-react";
 
 class YourAccounts extends Component {
   constructor(props) {
@@ -48,7 +56,28 @@ class YourAccounts extends Component {
           {this.state.AccountsList &&
             this.state.AccountsList.map(account => (
               <tr key={account.id}>
-                <td>{account.number}</td>
+                <td>
+                  <Container>
+                    <Row>
+                      <Col sm={8}>{account.number}</Col>
+                      <Col>
+                        <Button href={"#transfers/"+account.number} size="sm">
+                            <MaterialIcon
+                              icon="swap_horizontal_circle"
+                              invert
+                            />
+                        </Button>
+                        &nbsp;
+                        <Button href={"#history/"+account.number} size="sm">
+                            <MaterialIcon
+                              icon="history"
+                              invert
+                            />
+                        </Button>
+                      </Col>
+                    </Row>
+                  </Container>
+                </td>
                 <td>{account.balance} zł</td>
               </tr>
             ))}

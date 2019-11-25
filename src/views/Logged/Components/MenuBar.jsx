@@ -1,16 +1,24 @@
 import React, { Component } from "react";
-import { Navbar, Nav, Image, Form, Button } from "react-bootstrap";
+import { Navbar, Nav, Image, Form, Button, Spinner } from "react-bootstrap";
 import MaterialIcon from "material-icons-react";
 import logo from "../../../resources/Logo_tlo.png";
+import ConnectDB from "../../../utils/ConnectDB";
 
 class MenuBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      collapse: false
+      collapse: false,
+      account: null,
+      loadingAccount: true
     };
     this.onClick = this.onClick.bind(this);
     this.signOut = this.signOut.bind(this);
+    ConnectDB.getClientData(localStorage.getItem("userID")).then(resp => {
+      if (resp !== "Bad Request") {
+        this.setState({ account: resp, loadingAccount: false });
+      }
+    });
   }
 
   onClick() {
@@ -26,16 +34,31 @@ class MenuBar extends Component {
     window.location.reload(true);
   }
 
+  load = () => {
+    return <Spinner animation="border" variant="light" size="sm" />;
+  };
+
+  show = () => {
+    return (
+      <Nav.Link href="#account_data">
+        {this.state.account.firstName} {this.state.account.lastName}
+      </Nav.Link>
+    )
+  };
+
   state = { theme: null };
   render() {
+    let acc = this.state.loadingAccount ? this.load() : this.show();
+
     return (
       <>
         <Navbar
+          collapseOnSelect
           bg="dark"
           variant="dark"
           sticky="top"
           expand="lg"
-          className="justify-content-between"
+          // className="justify-content-between"
         >
           <Navbar.Brand href="#home">
             <Form inline>
@@ -43,60 +66,52 @@ class MenuBar extends Component {
             </Form>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav.Link href="#your_accounts">
-              <Button>
-                <Form inline>
+          <Navbar.Collapse
+            id="basic-navbar-nav"
+            className="justify-content-between"
+          >
+            <Nav>
+              <Button href="#your_accounts">
+                <Form inline className="justify-content-center">
                   <MaterialIcon icon="account_balance_wallet" invert />
                   &nbsp;Twoje konta
                 </Form>
               </Button>
-            </Nav.Link>
-
-            <Nav.Link href="#transfers">
-              <Button>
-                <Form inline>
+              <Button href="#transfers">
+                <Form inline className="justify-content-center">
                   <MaterialIcon icon="swap_horizontal_circle" invert />
                   &nbsp;Przelewy
                 </Form>
               </Button>
-            </Nav.Link>
-
-            <Nav.Link href="#history">
-              <Button>
-                <Form inline>
+              <Button href="#history">
+                <Form inline className="justify-content-center">
                   <MaterialIcon icon="history" invert />
                   &nbsp;Historia
                 </Form>
               </Button>
-            </Nav.Link>
-
-            <Nav.Link href="#contact">
-              <Button>
-                <Form inline>
+              <Button href="#contact">
+                <Form inline className="justify-content-center">
                   <MaterialIcon icon="mail" invert />
                   &nbsp;Kontakt
                 </Form>
               </Button>
-            </Nav.Link>
-
-            <Nav.Link href="#account_data">
-              <Button>
-                <Form inline>
+              <Button href="#account_data">
+                <Form inline className="justify-content-center">
                   <MaterialIcon icon="account_circle" invert />
                   &nbsp;Dane konta
                 </Form>
               </Button>
-            </Nav.Link>
-
-            <Nav.Link>
+            </Nav>
+            <br />
+            <Nav>
+              {acc}
               <Button onClick={this.signOut}>
-                <Form inline>
+                <Form inline className="justify-content-center">
                   <MaterialIcon icon="forward" invert />
                   &nbsp;Wyloguj
                 </Form>
               </Button>
-            </Nav.Link>
+            </Nav>
           </Navbar.Collapse>
         </Navbar>
       </>
