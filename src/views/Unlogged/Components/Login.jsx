@@ -5,7 +5,7 @@ import {
   Button,
   Modal,
   Spinner,
-  ModalBody
+  Alert
 } from "react-bootstrap";
 import MaterialIcon from "material-icons-react";
 import ConnectDB from "../../../utils/ConnectDB";
@@ -17,7 +17,8 @@ class Login extends Component {
       email: "",
       password: "",
       loading: false,
-      show: false
+      show: false,
+      error: false
     };
     this.handleClose = this.handleClose.bind(this);
     this.handleShow = this.handleShow.bind(this);
@@ -38,7 +39,7 @@ class Login extends Component {
 
   handleSubmit() {
     // console.log(this.state)
-    this.setState({ loading: true, show: false });
+    this.setState({ loading: true, error: false });
     ConnectDB.login(this.state.email, this.state.password).then(res => {
       // console.log(res)
       if (res !== "Bad Request") {
@@ -47,27 +48,33 @@ class Login extends Component {
       } else {
         // console.log(this.state)
         // this.handleClose();
-        this.setState({ loading: false });
+        this.setState({ loading: false, error: true });
         // console.log(this.state)
       }
     });
   }
 
   load = () => {
+    return <Spinner animation="border" variant="light" size="sm" />;
+  };
+
+  error = () => {
     return (
-      <Modal>
-        <ModalBody>
-          <Spinner animation="border" variant="dark" />
-        </ModalBody>
-      </Modal>
+      <Alert variant="danger">
+        Niepoprawne dane logowania, nie masz konta
+        <Alert.Link href="#register"> załóż je</Alert.Link>
+      </Alert>
     );
   };
 
   show = () => {
+    let contents = this.state.loading ? this.load() : "Zaloguj";
+    let errors = this.state.error ? this.error() : null;
+
     return (
-      <Modal show={this.state.show} onHide={this.handleClose}>
+      <Modal show={this.state.show}>
         <Form onSubmit={this.handleSubmit}>
-          <Modal.Header closeButton>
+          <Modal.Header>
             <Modal.Title>Logowanie</Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -118,6 +125,8 @@ class Login extends Component {
                 }}
               />
             </InputGroup>
+            <br />
+            {errors}
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleClose}>
@@ -128,7 +137,7 @@ class Login extends Component {
               type="submit"
               // onClick={this.handleSubmit}
             >
-              Zaloguj
+              {contents}
             </Button>
           </Modal.Footer>
         </Form>
@@ -137,8 +146,6 @@ class Login extends Component {
   };
 
   render() {
-    let contents = this.state.loading ? this.load() : this.show();
-
     return (
       <>
         <Button variant="primary" onClick={this.handleShow}>
@@ -147,7 +154,7 @@ class Login extends Component {
             &nbsp;{this.props.buttonName}
           </Form>
         </Button>
-        {contents}
+        {this.show()}
       </>
     );
   }

@@ -8,20 +8,20 @@ class YourAccounts extends Component {
     this.resize = this.resize.bind(this);
     this.state = { AccountsList: [], loading: true };
     ConnectDB.getClientAccounts(localStorage.getItem("userID")).then(resp => {
-      console.log(resp);
+      // console.log(resp);
       this.setState({ AccountsList: resp, loading: false });
     });
   }
 
   state = {
     x: document.documentElement.clientWidth,
-    y: document.documentElement.clientWidth
+    y: document.documentElement.clientHeight
   };
 
   resize() {
     this.setState({
       x: document.documentElement.clientWidth,
-      y: document.documentElement.clientWidth
+      y: document.documentElement.clientHeight
     });
   }
 
@@ -37,7 +37,7 @@ class YourAccounts extends Component {
 
   showAccounts = () => {
     return (
-      <Table responsive>
+      <Table responsive striped bordered hover>
         <thead>
           <tr>
             <th>Numer konta</th>

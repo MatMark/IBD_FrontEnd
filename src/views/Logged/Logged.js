@@ -7,7 +7,6 @@ import Transfers from "./Transfers";
 import AccountData from "./AccountData";
 import History from "./History";
 import YourAccounts from "./YourAccounts";
-import SignOut from "../Unlogged/SignOut";
 import Home from "./Home";
 
 function Logged() {
@@ -22,7 +21,6 @@ function Logged() {
         <Route path="/history" component={History} />
         <Route path="/contact" component={Contact} />
         <Route path="/account_data" component={AccountData} />
-        <Route path="/sign_out" component={SignOut} />
       </HashRouter>
     </div>
   );

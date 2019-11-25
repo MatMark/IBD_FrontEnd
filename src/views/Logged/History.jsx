@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import { Table, Spinner } from "react-bootstrap";
-import ConnectDB from "../../utils/ConnectDB";
+// import ConnectDB from "../../utils/ConnectDB";
 
 class History extends Component {
   constructor(props) {
     super(props);
     this.resize = this.resize.bind(this);
     this.state = { AddressesList: [], loading: true };
-    ConnectDB.getAddresses().then(resp => {
-      // console.log(resp);
-      this.setState({ AddressesList: resp, loading: false });
-    });
+    // ConnectDB.getAddresses().then(resp => {
+    // console.log(resp);
+    // this.setState({ AddressesList: resp, loading: false });
+    // });
   }
 
   state = {

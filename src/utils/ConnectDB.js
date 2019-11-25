@@ -3,14 +3,14 @@ import { handleResponse } from "./utils";
 class ConnectDB {
   //-----------------------ADDRESSES----------------------------------
 
-  static async getAddresses() {
+  static async getAddress(id) {
     const headers = new Headers([
       ["Accept", "application/json"],
       ["Authorization", "bearer " + localStorage.getItem("token")]
     ]);
     try {
       const res = await fetch(
-        "https://backendw4rta.azurewebsites.net/api/Address",
+        "https://backendw4rta.azurewebsites.net/api/Address/" + id,
         {
           method: "GET",
           headers: headers
@@ -49,6 +49,28 @@ class ConnectDB {
       );
       const res_1 = await res.json();
 
+      return res_1;
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
+  //----------------------CLIENTS---------------------------------
+
+  static async getClientData(id) {
+    const headers = new Headers([
+      ["Accept", "application/json"],
+      ["Authorization", "bearer " + localStorage.getItem("token")]
+    ]);
+    try {
+      const res = await fetch(
+        "https://backendw4rta.azurewebsites.net/api/Client/" + id,
+        {
+          method: "GET",
+          headers: headers
+        }
+      );
+      const res_1 = await res.json();
       return res_1;
     } catch (error) {
       console.error("Error:", error);
