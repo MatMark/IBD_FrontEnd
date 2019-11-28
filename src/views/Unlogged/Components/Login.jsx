@@ -148,9 +148,9 @@ class Login extends Component {
   render() {
     return (
       <>
-        <Button variant="primary" onClick={this.handleShow}>
+        <Button variant="outline-danger" onClick={this.handleShow} aria-label="LogIn">
           <Form inline>
-            <MaterialIcon icon="person" invert />
+            <MaterialIcon icon="person" color="#dc3545"/>
             &nbsp;{this.props.buttonName}
           </Form>
         </Button>

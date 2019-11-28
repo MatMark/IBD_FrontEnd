@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { Route, HashRouter, Switch } from "react-router-dom";
 import { Navbar, Button, Nav } from "react-bootstrap";
-import "../../App.css";
 import SignOut from "./SignOut";
 import Welcome from "./Welcome";
 import Register from "./Register";
 import WOP from "../WOP";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import "../../index.css";
 
 class Unlogged extends Component {
   constructor(props) {
@@ -25,13 +27,13 @@ class Unlogged extends Component {
         <Nav>
           <p className="p-1 mb-2 text-white">
             Korzystając z naszego serwisu akceptujesz
-            <a href="#cookies"> politykę cookies </a>
+            <a className="p-1 mb-2 text-warning" href="#cookies">politykę cookies </a>
           </p>
         </Nav>
         <br/>
         <Nav>
           <Button
-            variant="outline-primary"
+            variant="danger"
             onClick={() => {
               this.setState({ cookies: false });
             }}

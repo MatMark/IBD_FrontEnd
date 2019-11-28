@@ -40,12 +40,12 @@ class Welcome extends Component {
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover"
     };
-
+    
     return (
       <Jumbotron style={sectionStyle}>
-        <Card border="primary" style={{ maxWidth: "20rem" }}>
+        <Card border="danger" style={{ maxWidth: "20rem" }}>
           <Card.Header>
-            <h1 className="p-1 mb-2 text-primary font-weight-bold">
+            <h1 className="p-1 mb-2 text-danger font-weight-bold">
               <strong>Bankowość internetowa</strong>
             </h1>
           </Card.Header>
@@ -56,9 +56,9 @@ class Welcome extends Component {
             <Card.Text>
               <ButtonToolbar className="justify-content-between">
                 <Login buttonName="Zaloguj się" />
-                <Nav.Link href="#register" as={Button}>
+                <Nav.Link href="#register" as={Button} aria-label="Register" variant="outline-danger">
                   <Form inline>
-                    <MaterialIcon icon="person_add" invert />
+                    <MaterialIcon icon="person_add" color="#dc3545"/>
                     &nbsp;Zarejestruj
                   </Form>
                 </Nav.Link>

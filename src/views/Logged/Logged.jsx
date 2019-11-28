@@ -9,6 +9,9 @@ import History from "./History";
 import YourAccounts from "./YourAccounts";
 import Home from "./Home";
 import { AccountChooser } from "./Components";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import "../../index.css";
 
 class Logged extends Component {
   constructor(props) {
