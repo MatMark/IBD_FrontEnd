@@ -5,7 +5,8 @@ import {
   Button,
   Container,
   Row,
-  Col
+  Col,
+  Nav
 } from "react-bootstrap";
 import ConnectDB from "../../utils/ConnectDB";
 import MaterialIcon from "material-icons-react";
@@ -32,6 +33,13 @@ class YourAccounts extends Component {
       y: document.documentElement.clientHeight
     });
   }
+
+  addAccount = () => {
+    ConnectDB.postAccount(localStorage.getItem("userID")).then(resp => {
+      // console.log(resp);
+      window.location.reload(true);
+    });
+  };
 
   loadAccounts = () => {
     return (
@@ -61,26 +69,27 @@ class YourAccounts extends Component {
                     <Row>
                       <Col sm={8}>{account.number}</Col>
                       <Col>
-                        <Button href={"#transfers/"+account.number} size="sm">
-                            <MaterialIcon
-                              icon="swap_horizontal_circle"
-                              invert
-                            />
+                        <Button href={"#transfers/" + account.number} size="sm">
+                          <MaterialIcon icon="swap_horizontal_circle" invert />
                         </Button>
                         &nbsp;
-                        <Button href={"#history/"+account.number} size="sm">
-                            <MaterialIcon
-                              icon="history"
-                              invert
-                            />
+                        <Button href={"#history/" + account.number} size="sm">
+                          <MaterialIcon icon="history" invert />
                         </Button>
                       </Col>
                     </Row>
                   </Container>
                 </td>
-                <td>{account.balance} zł</td>
+                <td>{account.balance} PLN</td>
               </tr>
             ))}
+          <tr>
+            <td colSpan="2">
+              <Nav.Link onClick={this.addAccount}>
+                <MaterialIcon icon="add_circle" color="#0069d9"></MaterialIcon>
+              </Nav.Link>
+            </td>
+          </tr>
         </tbody>
       </Table>
     );

@@ -8,6 +8,7 @@ import AccountData from "./AccountData";
 import History from "./History";
 import YourAccounts from "./YourAccounts";
 import Home from "./Home";
+import { AccountChooser } from "./Components";
 
 class Logged extends Component {
   constructor(props) {
@@ -23,6 +24,8 @@ class Logged extends Component {
           <Route exact path="/" render={() => <Redirect to="/home" />} />
           <Route path="/home" component={Home} />
           <Route path="/your_accounts" component={YourAccounts} />
+          <Route exact path="/transfers" component={AccountChooser} />
+          <Route exact path="/history" component={AccountChooser} />
           <Route path="/transfers/:number" component={Transfers} />
           <Route path="/history/:number" component={History} />
           <Route path="/contact" component={Contact} />

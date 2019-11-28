@@ -122,6 +122,28 @@ class ConnectDB {
     }
   }
 
+  static async postAccount(clientId) {
+    const headers = new Headers([
+      ["Content-Type", "application/json"],
+      ["Authorization", "bearer " + localStorage.getItem("token")]
+    ]);
+    try {
+      const res = await fetch(
+        "https://backendw4rta.azurewebsites.net/api/Account",
+        {
+          method: "POST",
+          headers: headers,
+          body: clientId
+        }
+      );
+      const res_1 = await res.json();
+
+      return res_1;
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
   //----------------------TRANSFERS--------------------------------
 
   static async getTransfersByAccountId(id) {
@@ -157,6 +179,44 @@ class ConnectDB {
         {
           method: "GET",
           headers: headers
+        }
+      );
+      const res_1 = await res.json();
+      return res_1;
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
+  static async makeTransfer(
+    time,
+    amount,
+    destination,
+    title,
+    addressId,
+    accountId,
+    currency
+  ) {
+    const headers = new Headers([
+      ["Content-Type", "application/json"],
+      ["Authorization", "bearer " + localStorage.getItem("token")]
+    ]);
+    let object = {
+      time,
+      amount,
+      destination,
+      title,
+      addressId,
+      accountId,
+      currency
+    };
+    try {
+      const res = await fetch(
+        "https://backendw4rta.azurewebsites.net/api/Transfer/make_transfer",
+        {
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(object)
         }
       );
       const res_1 = await res.json();
